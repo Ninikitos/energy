@@ -1,7 +1,6 @@
 # GoodBadEmotions.com
 
-![GoodBadEmotions Logo](https://github.com/Ninikitos/energy/blob/main/static/img/meta_img.jpg) *(Replace with actual logo URL if available)*
-
+![GoodBadEmotions Logo](https://github.com/Ninikitos/energy/blob/main/static/img/meta_img.jpg)
 ## 🌟 About the Project
 **GoodBadEmotions** - is a modern service where people can share their thoughts anonymously, see how others feel, and let it all go — posts vanish after 24 hours.
 
