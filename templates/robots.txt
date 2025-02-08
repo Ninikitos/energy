@@ -1,0 +1,13 @@
+# Allow all search engines to crawl the site
+User-agent: *
+
+# Block search engines from accessing the admin area
+Disallow: /admin/
+
+# Allow Googlebot to index everything important
+User-agent: Googlebot
+Allow: /*.css$
+Allow: /*.js$
+
+# Link to your sitemap
+Sitemap: https://goodbademotions.com/sitemap.xml

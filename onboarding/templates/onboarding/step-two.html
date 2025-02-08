@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'onboarding/styles/onboarding.css' %}">
+{% endblock %}
+
+{% block title %}
+    Step 2
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <section class="content-section section-two">
+            <div>
+                <h1 class="section__title col-sm-12 col-md-12 col-lg-8">Which emotion speaks to you right now?</h1>
+                <p class="section__subtitle">Take a moment and choose the one that feels closest to your heart.</p>
+                <form class="form__steps" method="POST">
+                    {% csrf_token %}
+                    <div class="emotions">
+                        {% for emotion in emotions %}
+                            <div class="emotions__card pointer-events-disable {% if emotion_group|lower == 'high energy good' %}
+                               emotions__card-positive
+                               {% elif emotion_group|lower == 'low energy good' %}
+                               emotions__card-positive-low
+                               {% elif emotion_group|lower == 'high energy bad' %}
+                               emotions__card-negative
+                               {% else %}emotions__card-negative-low{% endif %}">
+                                <input type="radio" class="btn-check
+                                    {% if emotion_group|lower == 'high energy good' %}
+                                        emotions__card-input-positive
+                                    {% elif emotion_group|lower == 'low energy good' %}
+                                        emotions__card-input-positive-low
+                                    {% elif emotion_group|lower == 'high energy bad' %}
+                                        emotions__card-input-negative
+                                    {% else %} emotions__card-input-negative-low{% endif %}" name="emotion"
+                                       id="emotion_{{ emotion.id }}"
+                                       value="{{ emotion }}"
+                                       autocomplete="off"
+                                       {% if emotion == selected_emotion %}checked{% endif %}>
+                                <label class="emotions__card-input"
+                                       for="emotion_{{ emotion.id }}">
+                                    <span class="emotions__content">
+                                        <span class="emotions__content-title">
+                                            {{ emotion }}</span>
+                                        <span>{{ emotion.description }}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if error_message %}
+                        <div class="alert alert-danger mt-3 w-50">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+                    <div class="button__group">
+                        <button type="submit" class="cta-button pointer-events-disable">
+                            <span>Continue</span>
+                            <span class="mark-group">
+                            <span class="mark mark__positive"></span>
+                            <span class="mark mark__negative"></span>
+                        </span>
+                        </button>
+                        <div>
+                            <a class="button-link button-link-fixed-height-steps pointer-events-disable" href="{% url 'step-one' %}">Back</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="step-progress-bar-items">
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar step-active"></span>
+                    </li>
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar"></span>
+                    </li>
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar"></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'onboarding/js/step-two.js' %}"></script>
+{% endblock %}

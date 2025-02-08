@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between cards-controls">
+    <div>
+        <button class="button-link button-link-reset button-link-mr"
+                hx-get="{% querystring filter='all' page=None %}"
+                hx-trigger="click"
+                hx-target="#emotion-data"
+                hx-swap="innerHTML">All
+        </button>
+        {% if has_positive %}
+            <button class="button-link button-link-reset button-link-mr"
+                    hx-get="{% querystring filter='positive' page=None %}"
+                    hx-trigger="click"
+                    hx-target="#emotion-data"
+                    hx-swap="innerHTML">Uplifting
+            </button>
+        {% endif %}
+        {% if has_negative %}
+            <button class="button-link button-link-reset"
+                    hx-get="{% querystring filter='negative' page=None %}"
+                    hx-trigger="click"
+                    hx-target="#emotion-data"
+                    hx-swap="innerHTML">Challenging
+            </button>
+        {% endif %}
+    </div>
+    <div class="emotion-cards__paginator">
+        {% if user_data.has_previous %}
+            <button class="button-link button-link-reset"
+                    hx-get="{% querystring filter=current_filter page=user_data.previous_page_number %}"
+                    hx-target="#emotion-data"
+                    hx-swap="innerHTML">Previous
+            </button>
+        {% endif %}
+        {% if user_data.has_next %}
+            <button class="button-link button-link-reset"
+                    hx-get="{% querystring filter=current_filter page=user_data.next_page_number %}"
+                    hx-target="#emotion-data"
+                    hx-swap="innerHTML">Next
+            </button>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    {% for data in user_data %}
+        <div class="col-sm-12 col-md-4 col-lg-3 gy-3">
+            <div class="card card__wrapper">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between card-title__wrapper">
+                        <h5 class="card-title">{{ data.name }}</h5>
+                        <div>
+                            <span class="mark {% if data.emotion.type == 'Positive' %} mark__positive{% else %} mark__negative{% endif %}"></span>
+                        </div>
+                    </div>
+                    <p class="card-emotion">Felling <span
+                            class="text-times-new-roman">{{ data.emotion|title }}</span></p>
+                    <p class="card-text">{{ data.reason }}</p>
+                    <p class="card-time-posted">Posted {{ data.created_on|timesince }} ago</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

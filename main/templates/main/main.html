@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'main/main.css' %}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block navbar_extras %}
+    <a href="{% url 'step-one' %}" class="cta-button">
+        <span>Share emotion</span>
+        <div class="mark-group">
+            <div class="mark mark__positive"></div>
+            <div class="mark mark__negative"></div>
+        </div>
+    </a>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <section class="content-main">
+            <div class="chart">
+                <div class="row d-flex chart__overflow">
+                    <div class="col-12 d-flex">
+                        <div class="y-axis-labels">
+                            {% for i in "654321"|make_list %}
+                                <div class="time-label text-secondary">
+                                    <span>{{ i }}0min.</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex flex-column chart__wrapper">
+                            <div class="d-flex">
+                                {% for block in hour_blocks %}
+                                    <div class="hour-block">
+                                        <div class="intervals">
+                                            {% for interval in block.intervals %}
+                                                <div class="cube-tooltip-wrapper">
+                                                    {% if interval.dominant == 'positive' %}
+                                                        <div class="green-cube cube"
+                                                             data-positive="{{ interval.positive }}"
+                                                             data-negative="{{ interval.negative }}"></div>
+                                                    {% elif interval.dominant == 'negative' %}
+                                                        <div class="red-circle cube"
+                                                             data-positive="{{ interval.positive }}"
+                                                             data-negative="{{ interval.negative }}"></div>
+                                                    {% elif interval.dominant == 'equal' %}
+                                                        <div class="equal-circle cube"
+                                                             data-positive="{{ interval.positive }}"
+                                                             data-negative="{{ interval.negative }}"></div>
+                                                    {% else %}
+                                                        <div class="gray-cube cube"
+                                                             data-positive="{{ interval.positive }}"
+                                                             data-negative="{{ interval.negative }}"></div>
+                                                    {% endif %}
+                                                    <div class="cube-tooltip__wrapper">
+                                                        <div class="cube-tooltip">
+                                                            <span>Uplifting: {{ interval.positive }}</span>
+                                                            <span>Challenging: {{ interval.negative }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="d-flex justify-content-between x-axis-text">
+                                <p>Now</p>
+                                <p class="x-axis-text-12hr">12hr. ago</p>
+                                <p class="x-axis-text-24hr">24hr. ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="emotion-cards">
+                <h2 class="emotion-cards__title">Emotional Insights</h2>
+                {% if user_data %}
+                    <div id="emotion-data">
+                        <div class="d-flex justify-content-between cards-controls">
+                            <div>
+                                <button class="button-link button-link-reset button-link-mr"
+                                        hx-get="{% querystring filter='all' page=None %}"
+                                        hx-trigger="click"
+                                        hx-target="#emotion-data"
+                                        hx-swap="innerHTML">All
+                                </button>
+                                {% if has_positive %}
+                                    <button class="button-link button-link-reset button-link-mr"
+                                            hx-get="{% querystring filter='positive' page=None %}"
+                                            hx-trigger="click"
+                                            hx-target="#emotion-data"
+                                            hx-swap="innerHTML">Uplifting
+                                    </button>
+                                {% endif %}
+                                {% if has_negative %}
+                                    <button class="button-link button-link-reset"
+                                            hx-get="{% querystring filter='negative' page=None %}"
+                                            hx-trigger="click"
+                                            hx-target="#emotion-data"
+                                            hx-swap="innerHTML">Challenging
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <div class="emotion-cards__paginator">
+                                {% if user_data.has_previous %}
+                                    <button class="button-link button-link-reset"
+                                            hx-get="{% querystring filter=current_filter page=user_data.previous_page_number %}"
+                                            hx-target="#emotion-data"
+                                            hx-swap="innerHTML">Previous
+                                    </button>
+                                {% endif %}
+                                {% if user_data.has_next %}
+                                    <button class="button-link button-link-reset"
+                                            hx-get="{% querystring filter=current_filter page=user_data.next_page_number %}"
+                                            hx-target="#emotion-data"
+                                            hx-swap="innerHTML">Next
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% for data in user_data %}
+                                <div class="col-sm-12 col-md-4 col-lg-3 gy-3 card-mt-reset">
+                                    <div class="card card__wrapper">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between card-title__wrapper">
+                                                <h5 class="card-title">{{ data.name }}</h5>
+                                                <div>
+                                                    <span class="mark {% if data.emotion.type == 'Positive' %} mark__positive{% else %} mark__negative{% endif %}"></span>
+                                                </div>
+                                            </div>
+                                            <p class="card-emotion">Felling <span
+                                                    class="text-times-new-roman">{{ data.emotion|title }}</span></p>
+                                            <p class="card-text">{{ data.reason }}</p>
+                                            <p class="card-time-posted">Posted {{ data.created_on|timesince }} ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <h5>No Emotional Insights Yet</h5>
+                    <p>
+                        Break the silence. Share your energy level and emotional state.
+                    </p>
+                    <div>
+                        <a class="cta-button" href="{% url 'step-one' %}">Share Emotion</a>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'main/main.js' %}"></script>
+{% endblock %}

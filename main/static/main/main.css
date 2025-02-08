@@ -1,0 +1,258 @@
+/* Main */
+.chart {
+    margin-bottom: 72px;
+}
+
+.button-link-mr {
+    margin-right: 18px;
+}
+
+.emotion-cards__title {
+    margin-bottom: 32px;
+}
+
+.blocked-link {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Chart */
+.emotions__title {
+    margin-bottom: 24px;
+}
+
+.emotions__stats p:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.emotions__stats p:last-child {
+    margin-bottom: 0;
+}
+
+.hour-block {
+    border-right: 1px solid lightgrey;
+}
+
+.hour-block:first-child {
+    border-left: 1px solid lightgrey;
+}
+
+.y-axis-labels {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+}
+
+.time-label {
+    display: flex;
+    align-items: flex-start;
+    height: 29px;
+}
+
+.time-label span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.intervals {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0 5px;
+}
+
+.intervals div:not(:first-child) {
+    margin-bottom: 5px;
+}
+
+.cube {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity .2s ease;
+}
+
+.green-cube {
+    background-color: #58B58A;
+}
+
+.red-circle {
+    background-color: #FC6262;
+    border-radius: 50%;
+}
+
+.equal-circle {
+    background-color: #fc9d62;
+    border-radius: 50%;
+}
+
+.gray-cube {
+    border: 1px solid #887270;
+}
+
+.cube-tooltip-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.cube-tooltip-wrapper {
+    position: relative;
+}
+
+.cube-tooltip__wrapper {
+    position: fixed;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.cube-tooltip-wrapper:hover .cube-tooltip__wrapper {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cube-tooltip {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: var(--secondary_light);
+    border: 1px solid var(--secondary_dark);
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.cube-tooltip span {
+    display: block;
+}
+
+.cube-tooltip span:first-child{
+    margin-bottom: 6px;
+}
+
+.cube-tooltip-wrapper:hover .cube {
+    opacity: .5;
+    transition: opacity .2s ease-in;
+}
+
+.cube-tooltip-wrapper:hover .cube-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cube-tooltip {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.x-axis-text p {
+    font-size: 12px;
+    margin-block: 4px;
+    color: var(--secondary_supportive);
+}
+
+.x-axis-text-12hr {
+    margin-right: 14px;
+}
+
+.x-axis-text-24hr {
+    margin-right: -14px;
+}
+
+/* Cards */
+.emotion-cards__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card__wrapper {
+    border: 1px solid var(--secondary_dark);
+    border-radius: 20px;
+    padding: 20px;
+    background-color: transparent;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-title__wrapper {
+    margin-bottom: 24px;
+}
+
+.card-emotion {
+    margin-bottom: 12px;
+}
+
+.card-emotion span {
+    font-size: 18px;
+}
+
+.card-text {
+    margin-bottom: 24px;
+}
+
+.card-time-posted {
+    margin: 0;
+    font-size: 14px;
+    color: #4b4b4b;
+    opacity: .8;
+}
+
+.emotion-cards__paginator {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 991.98px) {
+    .emotions__stats {
+        margin-top: 24px;
+    }
+
+    .chart__overflow {
+        overflow: hidden;
+    }
+
+    .chart__wrapper {
+        overflow-y: hidden;
+        overflow-x: auto;
+        max-width: 100%;
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary_light) rgba(0, 0, 0, .1);
+    }
+
+    .x-axis-text {
+        width: 880px;
+    }
+
+    .x-axis-text-12hr {
+        margin-right: 0;
+    }
+
+    .x-axis-text-24hr {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 567.98px) {
+    .emotion-cards__title {
+        margin-bottom: 24px;
+    }
+
+    .chart {
+        margin-bottom: 48px;
+    }
+
+    .cards-controls {
+        margin-bottom: 18px;
+    }
+
+    .card-mt-reset:first-child {
+        margin-top: 0;
+    }
+}
+

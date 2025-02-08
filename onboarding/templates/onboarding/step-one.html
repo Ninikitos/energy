@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'onboarding/styles/onboarding.css' %}">
+{% endblock %}
+
+{% block title %}
+    Step 1
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <section class="content-section section-height">
+            <div>
+                <h1 class="section__title col-sm-12 col-md-12 col-lg-8">How are you feeling today?</h1>
+                <p class="section__subtitle">
+                    Gently choose the energy
+                    that resonates with your
+                    current state of mind.
+                </p>
+                <form method="get" class="form__steps slider-overflow-wrapper">
+                    {% csrf_token %}
+                    <div class="slider">
+                        <div class="col-sm-4 col-md-6 col-lg-6">
+                            <button class="card card-button card-button-positive pointer-events-disable" name="energy_choice"
+                                    value="high-energy-good">
+                            <span class="card-body">
+                                <span class="mark mark__positive mark__step-one"></span>
+                                <span class="card-title">High energy - Good</span>
+                                <span class="card-text">
+                                    A state of positive, vibrant energy
+                                    where you feel motivated, joyful,
+                                    and ready to take on challenges.
+                                </span>
+                            </span>
+                            </button>
+                        </div>
+                        <div class="col-sm-4 col-md-6 col-lg-6">
+                            <button class="card card-button card-button-positive-light pointer-events-disable" name="energy_choice"
+                                    value="low-energy-good">
+                                <span class="card-body">
+                                    <span class="mark mark__positive-light mark__step-one"></span>
+                                    <span class="card-title">Low energy - Good</span>
+                                    <span class="card-text">
+                                        A calm, peaceful energy where you
+                                        feel content and grounded. It’s a
+                                        time for reflection.
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-sm-4 col-md-6 col-lg-6">
+                            <button class="card card-button card-button-negative-light pointer-events-disable" name="energy_choice"
+                                    value="high-energy-bad">
+                            <span class="card-body">
+                                <span class="mark mark__negative-light mark__step-one"></span>
+                                <span class="card-title">High energy - Bad</span>
+                                <span class="card-text">
+                                    An intense, chaotic energy that
+                                    feels overwhelming or negative.
+                                    Your mind is racing with stress.
+                                </span>
+                            </span>
+                            </button>
+                        </div>
+                        <div class="col-sm-4 col-md-6 col-lg-6">
+                            <button class="card card-button card-button-negative pointer-events-disable" name="energy_choice"
+                                    value="low-energy-bad">
+                    <span class="card-body">
+                        <span class="mark mark__negative mark__step-one"></span>
+                        <span class="card-title">Low energy - Bad</span>
+                        <span class="card-text">
+                            Motivation feels low, you are drained,
+                            sluggish, energy tied to
+                            negative emotions.
+                        </span>
+                    </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center">
+                <ul class="step-progress-bar-items">
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar"></span>
+                    </li>
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar"></span>
+                    </li>
+                    <li class="step-progress-bar-item">
+                        <span class="step-progress-bar"></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'onboarding/js/step-one.js' %}"></script>
+{% endblock %}

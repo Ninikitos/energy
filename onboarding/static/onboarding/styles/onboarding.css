@@ -1,0 +1,317 @@
+/* Progress bar */
+.step-progress-bar-items {
+    width: 140px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.step-progress-bar-items {
+    pointer-events: none;
+}
+
+.step-progress-bar {
+    display: inline-block;
+    width: 40px;
+    height: 5px;
+    background-color: var(--secondary_supportive);
+    opacity: .4;
+    border-radius: 20px;
+}
+
+.step-active {
+    opacity: 1;
+    background-color: var(--primary_positive);
+}
+
+/* Step one */
+.slider {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.slider div:nth-child(1), .slider div:nth-child(2) {
+    padding-bottom: 16px;
+}
+
+.slider div:nth-child(odd) {
+    padding-right: 8px;
+}
+
+.slider div:nth-child(even) {
+    padding-left: 8px;
+}
+
+.card-button-positive:hover {
+    background-color: var(--positive_light);
+    transition: background-color .2s ease-in-out;
+}
+
+.card-button-positive-light:hover {
+    background-color: var(--primary_positive);
+    transition: background-color .2s ease-in-out;
+}
+
+.card-button-negative:hover {
+    background-color: var(--negative_light);
+    transition: background-color .2s ease-in-out;
+}
+
+.card-button-negative-light:hover {
+    background-color: var(--primary_negative);
+    transition: background-color .2s ease-in-out;
+}
+
+.card {
+    min-height: 230px;
+    padding: 20px;
+    border: 1px solid var(--secondary_dark);
+    border-radius: 20px;
+    background-color: transparent;
+}
+.card.card-button {
+    opacity: 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.mark__step-one {
+    margin-bottom: 48px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-bottom: 18px;
+}
+
+.card-text {
+    display: inline-block;
+}
+
+/* Step two */
+.emotions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.emotions__card {
+    opacity: 0;
+    position: relative;
+    padding: 0;
+    border: 1px solid var(--secondary_dark);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: background-color .2s ease-in-out;
+}
+
+.emotions__card:hover {
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+}
+
+.emotions__card-input {
+    max-width: 200px;
+    height: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: transparent;
+    transition: background-color .2s ease-in-out;
+}
+
+.emotions__card-positive:hover {
+    background-color: var(--positive_light);
+}
+
+.emotions__card-positive-low:hover {
+    background-color: var(--primary_positive);
+}
+
+.emotions__card-negative:hover {
+    background-color: var(--primary_negative);
+
+}
+
+.emotions__card-negative-low:hover {
+    background-color: var(--negative_light);
+}
+
+input[type="radio"].emotions__card-input-positive:checked + label {
+    background-color: var(--positive_light);
+}
+
+input[type="radio"].emotions__card-input-positive-low:checked + label {
+    background-color: var(--primary_positive);
+}
+
+input[type="radio"].emotions__card-input-negative:checked + label {
+    background-color: var(--primary_negative);
+}
+
+input[type="radio"].emotions__card-input-negative-low:checked + label {
+    background-color: var(--negative_light);
+}
+
+.emotions__card-input:hover, .emotions__card-label:hover {
+    cursor: pointer;
+}
+
+.emotions__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.emotions__content-title {
+    font-size: 22px;
+}
+
+/* Step three */
+.name__input {
+    font-size: 24px;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid var(--secondary_dark);
+    padding: 20px;
+}
+
+.name__input::placeholder {
+    color: var(--secondary_supportive);
+    font-size: 20px;
+    opacity: .6;
+}
+
+.name__input:focus {
+    background-color: transparent;
+}
+
+.text__input-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+#words_count {
+    font-size: 12px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.text__input {
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid var(--secondary_dark);
+    padding: 24px 20px;
+    font-size: 20px;
+}
+
+.text__input::placeholder {
+    color: var(--secondary_supportive);
+    font-size: 20px;
+    opacity: .6;
+}
+
+.text__input:focus {
+    background-color: transparent;
+}
+
+.form-control:focus {
+    border-color: var(--secondary_supportive);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 7px var(--secondary_supportive);
+}
+
+@media (max-width: 991.98px) {
+    /* Hero page */
+    .hero__content > div {
+        margin-bottom: 48px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    /* Hero page */
+    .hero__content-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero__content-text a {
+        display: inline-block;
+        max-width: 200px;
+    }
+
+    /* Step one */
+    .slider-overflow-wrapper {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        padding-left: calc(50vw - 50%);
+        position: relative;
+    }
+
+    .slider {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .slider .col-sm-4 {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        width: calc(100% - 32px);
+        max-width: 300px;
+    }
+
+    .slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .slider div:nth-child(2) {
+        padding-right: 8px;
+        padding-bottom: 0;
+    }
+
+    .slider div:nth-child(1), .slider div:nth-child(2) {
+        padding-bottom: 0;
+    }
+
+    .slider div:nth-child(3) {
+        padding-left: 8px;
+    }
+
+    .slider div:last-child {
+        padding-right: 12px;
+    }
+
+    .card-button {
+        min-height: 300px;
+    }
+
+    .mark__step-one {
+        margin-bottom: 125px;
+    }
+
+    /* Step two */
+    .emotions {
+        justify-content: space-between;
+        gap: 18px;
+    }
+
+    .emotions__card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .emotions__card label {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+}
