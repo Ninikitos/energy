@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     stepTwoTl.fromTo(stepTwoTitle, {clipPath: 'inset(0 0 100% 0)'}, {
         opacity: 1,
         clipPath: 'inset(0 0 0% 0)',
-        duration: 3,
+        duration: 2,
         ease: 'power2.inOut'
     }, '-=.8')
         .fromTo(stepTwoSubTitle, {clipPath: 'inset(0 0 100% 0)'}, {
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .fromTo(logo, {opacity: 0}, {opacity: 1, duration: 1, ease: 'power2.inOut'}, '-=1.3')
         .fromTo(cards, {opacity: 0}, {
             opacity: 1,
-            duration: 1,
-            stagger: 0.2,
+            duration: .4,
+            stagger: .2,
             ease: 'power2.inOut',
             onComplete: () => cards.forEach(card => card.classList.remove('pointer-events-disable'))
         }, '-=1.4')

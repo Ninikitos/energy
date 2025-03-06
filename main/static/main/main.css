@@ -163,6 +163,11 @@
     margin-right: -14px;
 }
 
+/* Emotion stats */
+.emotion-stats {
+    gap: 24px
+}
+
 /* Cards */
 .emotion-cards__wrapper {
     display: flex;

@@ -76,6 +76,52 @@
                             </div>
                         </div>
                     </div>
+                    <div class="emotion-stats d-flex">
+                        <div class="stat">
+                            <h5 class="mt-3">Overall trend</h5>
+                            <div class="d-flex flex-column">
+                                <p class="d-flex align-items-center mt-0 mb-2 small-text">
+                                    Uplifting: {{ positive_percentage }}%
+                                </p>
+                                <p class="d-flex align-items-center mt-0 small-text">
+                                    Challenging: {{ negative_percentage }}%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <h5 class="mt-3">Common Emotion</h5>
+                            <div class="d-flex flex-column">
+                                <p class="d-flex align-items-center mt-0 mb-2 small-text">
+                                    In 24 hours:
+                                    {% if most_popular_24_days %}
+                                    	{{ most_popular_24_days }}
+                                    {% else %}
+                                        No shares were made.
+                                    {% endif %}
+                                </p>
+                                <p class="d-flex align-items-center mt-0 small-text">
+                                    In a week:
+                                    {% if most_popular_7_days %}
+                                    	{{ most_popular_7_days }}
+                                    {% else %}
+                                        No shares were made.
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <h5 class="mt-3">Recent Emotion</h5>
+                            <div class="d-flex flex-column">
+                                {% if most_recent_emotion %}
+                                    <p class="d-flex align-items-center mt-0 small-text">
+                                        {{ most_recent_emotion }}
+                                    </p>
+                                {% else %}
+                                    <p class="mt-0 small-text">Nothing for now</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="emotion-cards">
@@ -146,12 +192,14 @@
                         </div>
                     </div>
                 {% else %}
-                    <h5>No Emotional Insights Yet</h5>
-                    <p>
-                        Break the silence. Share your energy level and emotional state.
-                    </p>
-                    <div>
-                        <a class="cta-button" href="{% url 'step-one' %}">Share Emotion</a>
+                    <div class="no-emotions">
+                        <h5>No Emotional Insights Yet</h5>
+                        <p>
+                            Break the silence. Share your energy level and emotional state.
+                        </p>
+                        <div>
+                            <a class="cta-button" href="{% url 'step-one' %}">Share Emotion</a>
+                        </div>
                     </div>
                 {% endif %}
             </div>

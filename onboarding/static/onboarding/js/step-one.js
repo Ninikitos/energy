@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const stepOneTl = gsap.timeline();
     stepOneTl.fromTo(stepOneTitle,
         {clipPath: 'inset(0 0 100% 0)'},
-        {opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 3, ease: 'power2.inOut'},
+        {opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 2, ease: 'power2.inOut'},
         '-=.8')
         .fromTo(stepOneSubTitle,
             {clipPath: 'inset(0 0 100% 0)'},

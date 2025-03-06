@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const stepThreeTl = gsap.timeline();
     stepThreeTl.fromTo(stepThreeTitle,
         {clipPath: 'inset(0 0 100% 0)'},
-        {opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 3, ease: 'power2.inOut'},
+        {opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 2, ease: 'power2.inOut'},
         '-=.8')
         .fromTo(stepThreeSubTitle,
             {clipPath: 'inset(0 0 100% 0)'},
@@ -18,28 +18,28 @@ document.addEventListener('DOMContentLoaded', function () {
             '-=1.2')
         .fromTo(logo,
             {opacity: 0},
-            {opacity: 1, duration: 1, ease: 'power2.inOut'},
+            {opacity: 1, duration: .5, ease: 'power2.inOut'},
             '-=1.3')
         .fromTo(stepThreeInput,
             {opacity: 0},
-            {opacity: 1, duration: 1, ease: 'power2.inOut',
+            {opacity: 1, duration: .5, ease: 'power2.inOut',
             onComplete: () => stepThreeInput.classList.remove('pointer-events-disable')},
             '-=1.4'
         )
         .fromTo(stepThreeTextarea,
             {opacity: 0},
-            {opacity: 1, duration: 1, ease: 'power2.inOut',
+            {opacity: 1, duration: .5, ease: 'power2.inOut',
             onComplete: () => stepThreeTextarea.classList.remove('pointer-events-disable')},
             '-=1.5'
         )
         .fromTo(stepThreeCta,
             {opacity: 0},
-            {opacity: 1, duration: 1, ease: 'power2.inOut',
+            {opacity: 1, duration: .5, ease: 'power2.inOut',
             onComplete: () => stepThreeCta.classList.remove('pointer-events-disable')},
             '-=1.5')
         .fromTo(stepThreeSecondaryBtn,
             {opacity: 0},
-            {opacity: 1, duration: 1, ease: 'power2.inOut',
+            {opacity: 1, duration: .5, ease: 'power2.inOut',
             onComplete: () => stepThreeSecondaryBtn.classList.remove('pointer-events-disable')},
             '<');
 });

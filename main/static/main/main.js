@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const mainHourBlocks = document.querySelectorAll('.hour-block');
     const mainTimeLabels = document.querySelectorAll('.time-label.text-secondary');
     const mainXAxisLabels = document.querySelectorAll('.d-flex.justify-content-between.x-axis-text');
+    const mainStats = document.querySelectorAll('.stat');
     const mainSecondaryBtns = document.querySelectorAll('button.button-link');
     const cards = document.querySelectorAll('.card.card__wrapper')
+    const noEmotions = document.querySelector('.no-emotions');
 
     const mainTl = gsap.timeline();
     mainTl.fromTo(logo,
@@ -33,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
             {clipPath: 'inset(0 0 100% 0)'},
             {opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 2, ease: 'power2.inOut'},
             '<')
+        .fromTo(mainStats,
+            {opacity: 0},
+            {opacity: 1, duration: .5, stagger: .4, ease: 'power2.inOut'},
+            '<')
         .fromTo(mainSecondaryBtns,
             {opacity: 0},
             {opacity: 1, duration: .3, stagger: .2, ease: 'power2.inOut'},
@@ -41,6 +47,14 @@ document.addEventListener('DOMContentLoaded', function () {
             {opacity: 0},
             {opacity: 1, duration: 1, stagger: .2, ease: 'power2.inOut'},
             '<');
+
+    if (noEmotions) {
+        mainTl.from(noEmotions, {
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+    }
 });
 
 document.addEventListener('htmx:afterSwap', (e) => {
@@ -54,9 +68,9 @@ document.addEventListener('htmx:afterSwap', (e) => {
             opacity: 1
         })
         reloadTl.fromTo(cards,
-                {opacity: 0},
-                {opacity: 1, duration: 1, stagger: 0.2, ease: 'power2.inOut'},
-                '<');
+            {opacity: 0},
+            {opacity: 1, duration: 1, stagger: 0.2, ease: 'power2.inOut'},
+            '<');
     }
 });
 
