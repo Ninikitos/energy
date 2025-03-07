@@ -272,3 +272,9 @@ def emotions_negative(request):
         'current_filter': 'negative',
         'has_negative': True,
     })
+
+
+def comments(request, comment_id):
+
+    context = {}
+    return render(request, 'main/comments.html', context)

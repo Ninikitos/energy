@@ -5,10 +5,6 @@
     <link rel="stylesheet" href="{% static 'main/main.css' %}">
 {% endblock %}
 
-{% block title %}
-
-{% endblock %}
-
 {% block navbar_extras %}
     <a href="{% url 'step-one' %}" class="cta-button">
         <span>Share emotion</span>
@@ -17,7 +13,6 @@
             <div class="mark mark__negative"></div>
         </div>
     </a>
-
 {% endblock %}
 
 {% block content %}
