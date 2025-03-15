@@ -9,6 +9,10 @@ __pycache__/
 # DB
 db.sqlite3
 
+# pythonanywhere
+energy/wsgi.py
+energy/settings.py
+
 # Distribution / packaging
 .Python
 build/
