@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .fromTo(mainStats,
             {opacity: 0},
             {opacity: 1, duration: .5, stagger: .4, ease: 'power2.inOut'},
-            '<')
-        .fromTo(mainSecondaryBtns,
+            '<');
+
+    if (mainSecondaryBtns.length && cards.length) {
+        mainTl.fromTo(mainSecondaryBtns,
             {opacity: 0},
             {opacity: 1, duration: .3, stagger: .2, ease: 'power2.inOut'},
             '<')
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {opacity: 0},
             {opacity: 1, duration: 1, stagger: .2, ease: 'power2.inOut'},
             '<');
+    }
 
     if (noEmotions) {
         mainTl.from(noEmotions, {
@@ -76,25 +79,41 @@ document.addEventListener('htmx:afterSwap', (e) => {
 
 
 document.querySelectorAll('.cube-tooltip-wrapper').forEach(wrapper => {
-    wrapper.addEventListener('mouseenter', () => {
-        const tooltipWrapper = wrapper.querySelector('.cube-tooltip__wrapper');
-        const cube = wrapper.querySelector('.cube');
+    const tooltipWrapper = wrapper.querySelector('.cube-tooltip__wrapper');
+    const cube = wrapper.querySelector('.cube');
 
-        const updateTooltipPosition = () => {
-            const cubeRect = cube.getBoundingClientRect();
-            tooltipWrapper.style.left = `${cubeRect.left + cubeRect.width / 2}px`;
-            tooltipWrapper.style.top = `${cubeRect.top - cubeRect.height / 2 + 35}px`;
-        };
+    const updateTooltipPosition = () => {
+        const cubeRect = cube.getBoundingClientRect();
+        tooltipWrapper.style.left = `${cubeRect.left + cubeRect.width / 2}px`;
+        tooltipWrapper.style.top = `${cubeRect.top - cubeRect.height / 2 + 35}px`;
+    };
 
+    // Show tooltip function
+    const showTooltip = () => {
         updateTooltipPosition();
+        tooltipWrapper.style.display = 'block'; // Ensure it’s visible
+        window.addEventListener('scroll', updateTooltipPosition);
+    };
 
-        // Add scroll event listener to update position
-        const scrollHandler = updateTooltipPosition;
-        window.addEventListener('scroll', scrollHandler);
+    // Hide tooltip function
+    const hideTooltip = () => {
+        tooltipWrapper.style.display = 'none'; // Hide it
+        window.removeEventListener('scroll', updateTooltipPosition);
+    };
 
-        // Clean up event listeners on mouse leave
-        wrapper.addEventListener('mouseleave', () => {
-            window.removeEventListener('scroll', scrollHandler);
-        });
-    });
+    // Desktop: Mouse events
+    wrapper.addEventListener('mouseenter', showTooltip);
+    wrapper.addEventListener('mouseleave', hideTooltip);
+
+    // Mobile: Touch events
+    wrapper.addEventListener('touchstart', (e) => {
+        showTooltip();
+    }, { passive: true });
+
+    // Hide on touch outside or after a delay
+    document.addEventListener('touchstart', (e) => {
+        if (!wrapper.contains(e.target)) {
+            hideTooltip();
+        }
+    }, { passive: true });
 });
