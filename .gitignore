@@ -13,6 +13,9 @@ db.sqlite3
 energy/wsgi.py
 energy/settings.py
 
+# staticfiles
+staticfiles/
+
 # Distribution / packaging
 .Python
 build/
