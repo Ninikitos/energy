@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # DB
-db.sqlite3s
+db.sqlite3
 
 # Distribution / packaging
 .Python
